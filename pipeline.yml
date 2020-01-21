@@ -1,0 +1,20 @@
+jobs:
+- name: job-check-clair
+  plan:
+  - task: check-clair
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: docker.io/jmferrer/klaar
+      run:
+        path: klaar
+        args:
+        - docker.io/wordpress:latest
+      params:
+        CLAIR_ADDR: http://kjghkljh-solera-clair.osapps.fermosit.es:80
+        CLAIR_OURPUT: High
+        CLAIR_THRESHOLD: 10
+        DOCKER_USER: ""
+        DOCKER_PASSWORD: ""
